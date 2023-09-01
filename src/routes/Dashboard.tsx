@@ -4,7 +4,9 @@ import { useAuth } from "../auth/AuthProvider";
 import { API_URL } from "../auth/authConstants";
 
 interface Todo {
-  id: string;
+  // id: string;
+  // Warning: Each child in a list should have a unique "key" prop.
+  _id: string;
   title: string;
   completed: boolean;
 }
@@ -51,7 +53,7 @@ export default function Dashboard() {
           const todo = (await response.json()) as Todo;
           setTodos([...todos, todo]);
         }
-      } catch (error) {}
+      } catch (error) {console.log(error)}
     }
   }
 
@@ -77,7 +79,8 @@ export default function Dashboard() {
           />
         </form>
         {todos.map((post: Todo) => (
-          <div key={post.id}>
+          //<div key={post.id}>
+          <div key={post._id}>
             <h3>{post.title}</h3>
             <p>{post.completed}</p>
           </div>
